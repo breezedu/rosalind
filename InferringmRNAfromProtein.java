@@ -48,6 +48,7 @@ public class InferringmRNAfromProtein {
 			System.out.print(" " + RNAProteinDict.Protein2RNA.get(temp).size() );
 		}
 		
+		//instead of just printout the last 6 digits of the possibilities, I prefer to printout the whole digit string
 		System.out.println("\nThere are " + multiplyStr(P, 3) + " possibilities.");
 		
 	}//end main();
@@ -56,8 +57,19 @@ public class InferringmRNAfromProtein {
 		// TODO Multiply a string of long-long integer with a single digit
 		if(num==1) return p;
 		
+		int reminder = 0;		//the reminder of each multiply operation;
+		String retStr = "";		//the string of digit to return;
 		
-		return null;
-	}
+		for(int i=p.length()-1; i>=0; i--){
+			int temp = Integer.parseInt(p.substring(i, i+1));
+			int curr = temp*num + reminder;
+			
+			retStr = curr%10 + retStr;
+			reminder = curr/10;
+		}
+		
+		if(reminder > 0) retStr = reminder + retStr;
+		return retStr;
+	}//end of multiplyStr() method;
 
 }//end of everything in InferringmRNAfromProtein class;
