@@ -1,7 +1,20 @@
 package rosalind;
 
 import java.util.Scanner;
-
+/**********************
+ * http://rosalind.info/problems/prot/
+ * 
+ * Given: An RNA string s corresponding to a strand of mRNA (of length at most 10 kbp).
+ * Return: The protein string encoded by s.
+ * Sample Dataset
+ * AUGGCCAUGGCGCCCAGAACUGAGAUCAAUAGUACCCGUAUUAACGGGUGA
+ * 
+ * Sample Output
+ * MAMAPRTEINSTRING
+ * 
+ * @author Frog
+ *
+ */
 public class RNAtoProteinTranscription {
 	
 	public static void main(String[] args){
