@@ -72,6 +72,11 @@ public class MajorityElement {
 	/***********
 	 * get the majority element in an array, return the element;
 	 * if there's no element over 50%, return -1;
+	 * Use a HashMap to count the repeat time of each element;
+	 * array[i] is the key, repeat times is the value;
+	 * when we get an element repeated more than Length/2, return that array[i];
+	 * if no element (array[i]) repeated more than Length/2 times, return -1; 
+	 * 
 	 * @param array
 	 * @return
 	 */
