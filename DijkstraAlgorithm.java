@@ -41,7 +41,7 @@ public class DijkstraAlgorithm {
 		System.out.println("This is Dijkstra's algorithm program.");
 		
 		//1st of all, read in the num of vertices and edges
-		Scanner readScan = new Scanner(new File("dijksim.txt"));
+		Scanner readScan = new Scanner(new File("dijk.txt"));
 		
 		int vertices = readScan.nextInt();
 		int edges = readScan.nextInt();
@@ -59,12 +59,16 @@ public class DijkstraAlgorithm {
 		//declare an array of vert[] to record whether that vertex has been visited or not;
 		int[] vert = new int[vertices+1];
 		ArrayList<ArrayList<Integer>> graph = new ArrayList<ArrayList<Integer>>();
+		ArrayList<ArrayList<Integer>> ascent = new ArrayList<ArrayList<Integer>>();
 		
 		for(int i=0; i<=vertices; i++){
 			vert[i] = 0; 				//vert[i]=0 means vertex[i] has not been visited;
 			
 			ArrayList<Integer> empty = new ArrayList<Integer>();
 			graph.add(empty);
+			
+			ArrayList<Integer> ascentEmpty = new ArrayList<Integer>();
+			ascent.add(ascentEmpty);
 			
 		}//end for i<=vertices loop;
 		
@@ -77,7 +81,7 @@ public class DijkstraAlgorithm {
 			int dis = readScan.nextInt();
 			
 			graph.get(v1).add(v2);
-			//graph.get(v2).add(v1);
+			ascent.get(v2).add(v1);		//add v1 to v2's ascent ArrayList;
 			
 			//build the distance matrix:
 			if(dis < distance[v1][v2]) distance[v1][v2] = dis;
@@ -100,12 +104,9 @@ public class DijkstraAlgorithm {
 		}
 		dist[1] = 0;	//int currDis = 0;
 		
-		for(int i=1; i<=vertices; i++){
+		dijkstra(1, vert, dist, distance, graph, ascent);
+		//	vert[i] = 1;
 		
-			dijkstra(i, vert, dist, distance, graph);
-			vert[i] = 1;
-		
-		}
 		
 		//5th, printout the distance array;
 		System.out.println("The distance from initial vertex to each vertex are: ");
@@ -122,7 +123,7 @@ public class DijkstraAlgorithm {
 	}//end main();
 
 	private static void dijkstra(int n, int[] vert, int[] dist, int[][] distance, 
-			ArrayList<ArrayList<Integer>> graph) {
+			ArrayList<ArrayList<Integer>> graph, ArrayList<ArrayList<Integer>> ascent) {
 		// TODO Auto-generated method stub
 		if(vert[n] == 1) return;
 		
@@ -144,6 +145,21 @@ public class DijkstraAlgorithm {
 		//mark vert[n] as visited;
 		vert[n] = 1;
 		
+		
+		//check all vertex n's ascent to vertex[n]'s distance;
+		
+		int ascLen = ascent.get(n).size();
+		for(int i=0; i<ascLen; i++){
+			
+			int v1 = ascent.get(n).get(i);
+			int v2 = n;
+			
+			if(distance[v1][v2] + dist[v1] < dist[v2]){
+				dist[v2] = distance[v1][v2]+dist[v1];
+			}
+			
+		}//end for i<ascLen loop;
+		
 		//printout all distances from initial vertex to vert[n]'s neighbors
 		
 		System.out.println(" n=" + n);
@@ -156,7 +172,7 @@ public class DijkstraAlgorithm {
 		//dijkstra() all n's neighbors;
 		for(int i=0; i<broad; i++){
 			
-			dijkstra(graph.get(n).get(i), vert, dist, distance, graph);
+			dijkstra(graph.get(n).get(i), vert, dist, distance, graph, ascent);
 		}
 
 		
