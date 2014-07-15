@@ -16,6 +16,8 @@ import java.util.Scanner;
  * 1 3 5 7 2
  * 
  * Sample Output
+ * 7 5 3 1 2 
+ * or an array below, which I don't think it is correct;
  * 7 5 1 3 2
  * 
  * @author Breeze.du
@@ -44,6 +46,7 @@ public class BuildingaHeap {
 		int[] heapArray = new int[num+1];
 		heapArray[0] = 999999;
 		
+		//from the end to beginning or versus?
 		for(int i=0; i<num; i++){
 			addToHeap(oriArray[i], i+1, heapArray);
 		}
@@ -53,6 +56,36 @@ public class BuildingaHeap {
 		System.out.println();
 		for(int i=1; i<=num; i++){
 			System.out.print(heapArray[i] + " ");
+		}
+		
+		
+		//4th, bubble up the original array from end to the beginning;
+		int[] newArray = new int[num+1];
+		for(int i=0; i<num; i++){
+			newArray[i+1] = oriArray[i];
+		}
+		
+		//bubble up
+		newArray[0] = 999999;
+		
+		for(int i=num; i>1; i--){
+			
+			int parent = i/2;
+			while(parent >= 1){
+				
+				if(newArray[i] > newArray[parent]) {
+					swap(newArray, i, parent);
+				}
+				
+				parent = parent/2;
+				
+			}//end while loop;
+			
+		}//end for i>0; end bubble up;
+		
+		System.out.println("\nPrintout bubbled array:");
+		for(int i=1; i<=num; i++){
+			System.out.print(newArray[i] + " ");
 		}
 		
 	}//end main();
