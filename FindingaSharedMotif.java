@@ -32,6 +32,18 @@ public class FindingaSharedMotif {
 		
 		
 		ArrayList<String> comsubStrs = findAllCommonSubstrings(strA, strB);
+		
+		//2nd, check if any substrings are also 'common' in the third string
+		String strC = "ATACA";
+		String LCStr = "";
+		for(int i=0; i<comsubStrs.size(); i++){
+			
+			if(strC.contains(comsubStrs.get(i) ) && comsubStrs.get(i).length()>LCStr.length()){
+				LCStr = comsubStrs.get(i); 
+			}
+		} //end for i<comsubStrs.size
+		
+		System.out.println("The LCS is: " + LCStr); 
 	}
 	
 	
@@ -63,10 +75,45 @@ public class FindingaSharedMotif {
 			
 		}
 		
-		print_matrix_with2strings(matchMatrix, strA, strB); 
+	//	print_matrix_with2strings(matchMatrix, strA, strB); 
 		//check all other elements in the matrix: 
-		//if 
+		//if strA.charAt(i) == strB.charAt(j), then matchMatrix = 1 + matchMatrix[i-1][j-1]
+		for(int i=1; i<row; i++){
+			
+			for(int j=1; j<col; j++){
+				
+				if(strA.charAt(i-1) == strB.charAt(j-1)){
+					
+					matchMatrix[i][j] = 1 + matchMatrix[i-1][j-1]; 
+				}
+				
+			} //end for j<col loop;
+		} //end for i<row loop; 
 		
+		print_matrix_with2strings(matchMatrix, strA, strB); 
+		
+		
+		//after we built the match-matrix, get all substrings in common with length > than 1;
+		for(int i=1; i<row; i++){
+			
+			int max = 1;
+			for(int j=1; j<col; j++){
+				
+				if(matchMatrix[i][j] > max){
+					
+					max = matchMatrix[i][j]; 
+				}
+				
+			}
+			
+			String tempStr = strA.substring(i - max, i);
+			
+			
+			if(tempStr.length() > 1 && !retStrs.contains(tempStr)){
+				System.out.println(tempStr); 
+				retStrs.add(tempStr); 
+			}
+		}
 		
 		return retStrs;
 		
