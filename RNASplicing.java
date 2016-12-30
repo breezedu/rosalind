@@ -93,7 +93,16 @@ public class RNASplicing {
 	} //end of main(); 
 	
 
-	
+	/*******************
+	 * transfer DNA sequence to RNA sequence
+	 * A - A
+	 * G - G
+	 * C - C
+	 * T - U
+	 * 
+	 * @param dna
+	 * @return
+	 */
 	private static String from_DNA_to_RNA(String dna) {
 		// TODO Auto-generated method stub
 		
@@ -110,17 +119,30 @@ public class RNASplicing {
 		}
 		
 		return RNA;
-	}
+	} //end from_DNA_to_RNA() method; 
 
 
-
+	/**************************
+	 * base on RNA codon to amino table,
+	 * get a hashmap
+	 * key: codon
+	 * value: amino first capital letter
+	 * 
+	 * @return
+	 */
 	private static HashMap<String, String> get_RNA2Protein_table() {
 		// TODO Auto-generated method stub
-		String codonandamino = "UUU F CUU L AUU I GUU V UUC F CUC L AUC I GUC V UUA L CUA L AUA I GUA V UUG L CUG L AUG M "
-				+ "GUG V UCU S CCU P ACU T GCU A UCC S CCC P ACC T GCC A UCA S CCA P ACA T GCA A UCG S CCG P ACG T "
-				+ "GCG A UAU Y CAU H AAU N GAU D UAC Y CAC H AAC N GAC D UAA Stop CAA Q AAA K GAA E UAG Stop CAG Q "
-				+ "AAG K GAG E UGU C CGU R AGU S GGU G UGC C CGC R AGC S GGC G UGA Stop CGA R AGA R GGA G UGG W CGG R AGG R GGG G";
+		String codonandamino = 
+				"UUU F CUU L AUU I GUU V UUC F CUC L AUC I GUC V UUA L "
+				+ "CUA L AUA I GUA V UUG L CUG L AUG M "
+				+ "GUG V UCU S CCU P ACU T GCU A UCC S CCC P "
+				+ "ACC T GCC A UCA S CCA P ACA T GCA A UCG S CCG P ACG T "
+				+ "GCG A UAU Y CAU H AAU N GAU D UAC Y CAC H AAC N GAC D "
+				+ "UAA Stop CAA Q AAA K GAA E UAG Stop CAG Q "
+				+ "AAG K GAG E UGU C CGU R AGU S GGU G UGC C CGC R AGC S "
+				+ "GGC G UGA Stop CGA R AGA R GGA G UGG W CGG R AGG R GGG G";
 		
+		//split the string into string array; 
 		String[] codon2amino = codonandamino.split(" "); 
 		
 		
@@ -131,6 +153,7 @@ public class RNASplicing {
 		System.out.println(); 
 		
 		
+		//create a hashmap; 
 		HashMap<String, String> codon2amino_table = new HashMap<String, String>(); 
 		
 		for(int i=0; i<codon2amino.length; i+=2){
@@ -139,6 +162,7 @@ public class RNASplicing {
 			
 		} //enf foe i<codon2amino.length loop; 
 		
+		//return the hashmap; 
 		return codon2amino_table;
 		
 	} //end get_DNA2Protein_table() method; 
