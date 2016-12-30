@@ -119,6 +119,9 @@ public class FindingaSharedMotif {
 			
 		}//end while scanner has next line loop; 
 		
+		//add the last seq
+		dnaStrs.add(seq); 
+		
 		scanSeqs.close(); 
 		System.out.println("\t there are " + dnaStrs.size() + " DNA strings."); 
 		
