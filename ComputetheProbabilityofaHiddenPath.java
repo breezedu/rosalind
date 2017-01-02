@@ -16,6 +16,16 @@ import java.util.Scanner;
  */
 public class ComputetheProbabilityofaHiddenPath {
 	
+	/***************************************
+	 * The problem is relatively easy to solve once you know how the HMM works;
+	 * The transition matrix give a probability of two letters in a row
+	 * The initial state probability for A or B would be 0.5, as equally distributed; 
+	 * So, get each two letters in the path, find the corresponding probability in the matrix;
+	 * 
+	 * finial probability = initial state probability * /Pi (probability_of_each_2Letters)
+	 *  
+	 * @param args
+	 */
 	public static void main(String[] args){
 		
 		//step 1: input string/hidden path and the transition matrix:
