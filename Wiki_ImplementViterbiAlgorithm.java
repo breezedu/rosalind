@@ -30,6 +30,16 @@ public class Wiki_ImplementViterbiAlgorithm {
 		System.out.println("Please input the component of transition matrix: "); 
 		String transStr = input.nextLine();
 		
+		System.out.println("Please input the initial probabilities for each state: \n"
+				+ "(in the wiki case, p(A)=0.6, p(B)=0.4, in the rosalind case, p(A)=p(B)=0.5.)\n"); 
+		
+		double ptransition[] = new double[transStr.length()];
+		
+		for(int i=0; i<ptransition.length; i++){
+			ptransition[i] = input.nextDouble(); 
+		}
+		System.out.println("start probabilities done!\n"); 
+		
 		System.out.println("Please input the transition matrix: (AB * AB)"); 
 		// copy:   0.641   0.359 0.729   0.271     0.117   0.691   0.192 0.097   0.42    0.483
 		 
@@ -49,7 +59,7 @@ public class Wiki_ImplementViterbiAlgorithm {
 		printMatrix(transition); 
 		
 		//emission matrix
-		System.out.println("Now input the emission matrix:"); 
+		System.out.println("\nNow input the emission matrix:"); 
 		//copy:      0.117   0.691   0.192 0.097   0.42    0.483
 		
 		String Row = transStr;			//"AB" in this case; 
@@ -98,6 +108,8 @@ public class Wiki_ImplementViterbiAlgorithm {
 		/**************************************************************************************************/
 		//Step 3, traverse through the string-X, check each character,
 		
+		
+		
 		//step 3.1, update the first column of the state[][] matrix; 
 		//for the first column of the state[][] matrix; 
 		// it could be the max of [AAx or BAx ]
@@ -105,13 +117,21 @@ public class Wiki_ImplementViterbiAlgorithm {
 		int row = state.length; 
 		int col = state[0].length; 
 		
-		double ptransition[] = {0.5, 0.5, 0.5}; 
+		
 		
 		for( int i=0; i<row; i++){
 			
 			//when i = 0; the state[0][0] would be AAx or BAx, we take the greater value from AB*AB transition matrix first column, 
 			// 
+			//	int currTransitionCol = i; 
+			
+			//	double transitionArray[] = getOneColumnFromMatrix(transition, currTransitionCol); 
+			
+			//there's no priorState in the first column of state[][]; 
+			//double priorState[] = getOneColumnFromMatrix(state, 0); 
+			
 			//call maxOfcolumn() method to get the max value of a column.
+			
 			state2[i][0] = ptransition[i] * state[i][0]; 
 			
 		}
