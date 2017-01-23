@@ -5,10 +5,7 @@ import java.util.Scanner;
 
 /**********************************************************
  * https://en.wikipedia.org/wiki/Viterbi_algorithm
- * 
- * Feel bad that the code could solve the wiki example problem, it could give exactly the same result matrix.  
- * However, it does not work well with Rosalind question..
- * 
+ *  
  * Given: A string x, followed by the alphabet Sum from which x was constructed, 
  * followed by the states States, transition matrix Transition, 
  * and emission matrix Emission of an HMM (Sum, States, Transition, Emission)..
