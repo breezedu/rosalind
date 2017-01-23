@@ -100,6 +100,7 @@ public class ImplementViterbiAlgorithm {
 			}
 		}
 		
+		System.out.println("Print out original state matrix:"); 
 		printMatrix(state); 
 		
 		/**************************************************************************************************/
@@ -129,7 +130,7 @@ public class ImplementViterbiAlgorithm {
 		}
 		
 		
-		printMatrix(state2); 
+		//printMatrix(state2); 
 		
 		
 		
@@ -168,8 +169,10 @@ public class ImplementViterbiAlgorithm {
 			
 		}//end for i<col loop; 
 		
+		System.out.println("\nPrint out path state matrix:"); 
 		printMatrix(state2); 
 		
+		System.out.println("\nPrint out original Path matrix:"); 
 		printIntMatrix(path); 
 		
 		
